@@ -1,0 +1,235 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jost);
+  --font-serif: var(--font-playfair);
+  --font-script: var(--font-vibes);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Ember & Oak brand palette */
+@theme {
+  --color-cream: #f7f3ec;
+  --color-parchment: #efe8dc;
+  --color-charcoal: #171310;
+  --color-coal: #221c16;
+  --color-coal2: #2c251d;
+  --color-gold: #c8a054;
+  --color-gold-soft: #e6cd9a;
+  --color-gold-deep: #a9863f;
+  --color-ink: #2a241c;
+  --color-taupe: #6f6455;
+  --color-line: #e6ddcf;
+  --color-liner: #3a3128;
+}
+
+:root {
+  --radius: 0.375rem;
+  --background: #f7f3ec;
+  --foreground: #2a241c;
+  --card: #ffffff;
+  --card-foreground: #2a241c;
+  --popover: #ffffff;
+  --popover-foreground: #2a241c;
+  --primary: #c8a054;
+  --primary-foreground: #171310;
+  --secondary: #efe8dc;
+  --secondary-foreground: #2a241c;
+  --muted: #efe8dc;
+  --muted-foreground: #6f6455;
+  --accent: #f3ede1;
+  --accent-foreground: #2a241c;
+  --destructive: #b3402e;
+  --border: #e6ddcf;
+  --input: #e0d6c6;
+  --ring: #c8a054;
+  --chart-1: #c8a054;
+  --chart-2: #a9863f;
+  --chart-3: #6f6455;
+  --chart-4: #2a241c;
+  --chart-5: #e6cd9a;
+  --sidebar: #f7f3ec;
+  --sidebar-foreground: #2a241c;
+  --sidebar-primary: #c8a054;
+  --sidebar-primary-foreground: #171310;
+  --sidebar-accent: #efe8dc;
+  --sidebar-accent-foreground: #2a241c;
+  --sidebar-border: #e6ddcf;
+  --sidebar-ring: #c8a054;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  }
+  ::selection {
+    background: #c8a054;
+    color: #171310;
+  }
+}
+
+/* ---------- Template style helpers ---------- */
+
+.font-script { font-family: var(--font-vibes), cursive; }
+.font-serif { font-family: var(--font-playfair), Georgia, serif; }
+
+.section-pad { @apply py-16 md:py-24; }
+
+.eyebrow {
+  @apply font-script text-gold text-3xl md:text-4xl leading-none;
+}
+
+.h-script-line {
+  @apply inline-flex items-center gap-4;
+}
+.h-script-line::before,
+.h-script-line::after {
+  content: "";
+  @apply hidden md:block h-px w-10 bg-gold/60;
+}
+
+.gold-btn {
+  @apply inline-flex items-center justify-center gap-2 bg-gold text-charcoal px-7 py-3 text-sm font-semibold uppercase tracking-[0.14em] border border-gold transition-all duration-300 hover:bg-transparent hover:text-gold;
+}
+.gold-btn-dark {
+  @apply inline-flex items-center justify-center gap-2 bg-gold text-charcoal px-7 py-3 text-sm font-semibold uppercase tracking-[0.14em] border border-gold transition-all duration-300 hover:bg-transparent hover:text-gold-soft;
+}
+.ghost-btn-light {
+  @apply inline-flex items-center justify-center gap-2 border border-cream/40 text-cream px-7 py-3 text-sm font-semibold uppercase tracking-[0.14em] transition-all duration-300 hover:border-gold hover:text-gold;
+}
+.ghost-btn-dark {
+  @apply inline-flex items-center justify-center gap-2 border border-ink/30 text-ink px-7 py-3 text-sm font-semibold uppercase tracking-[0.14em] transition-all duration-300 hover:border-gold hover:text-gold-deep;
+}
+
+/* dotted price leaders in the menu */
+.price-leader {
+  flex: 1 1 auto;
+  margin: 0 0.6rem;
+  border-bottom: 2px dotted color-mix(in srgb, currentColor 35%, transparent);
+  transform: translateY(-0.3em);
+  min-width: 2rem;
+}
+
+/* reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* hero slide fade */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  background-size: cover;
+  background-position: center;
+}
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* slow ken burns for hero */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.hero-slide.active .ken {
+  animation: kenburns 9s ease-out forwards;
+}
+
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-anim {
+  animation: floatUp 1s ease both;
+}
+.hero-anim-2 { animation-delay: 0.25s; }
+.hero-anim-3 { animation-delay: 0.5s; }
+.hero-anim-4 { animation-delay: 0.75s; }
+
+/* gallery hover */
+.gallery-item img {
+  transition: transform 0.7s ease, filter 0.7s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(0.85);
+}
+
+/* thin styled scrollbar for tab overflow */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* dark band texture */
+.dark-band {
+  background-color: #171310;
+  background-image:
+    radial-gradient(1200px 500px at 20% 0%, rgba(200, 160, 84, 0.09), transparent 60%),
+    radial-gradient(1000px 500px at 90% 100%, rgba(200, 160, 84, 0.07), transparent 55%);
+}
+
+/* input styling shared by forms */
+.field {
+  @apply w-full bg-white border border-input px-4 py-3 text-sm text-ink placeholder:text-taupe/70 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition;
+}
+.field-label {
+  @apply block text-xs font-semibold uppercase tracking-[0.14em] text-taupe mb-2;
+}
+
+/* back to top */
+.to-top {
+  @apply fixed bottom-6 right-6 z-40 h-11 w-11 flex items-center justify-center bg-gold text-charcoal shadow-lg transition-all duration-300 hover:bg-gold-deep hover:text-white;
+}
